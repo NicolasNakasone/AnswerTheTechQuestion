@@ -1,0 +1,115 @@
+// {
+//   "extends": [
+//     "airbnb-base"
+//     // "prettier",
+//     // // "prettier/react",
+//     // "plugin:prettier/recommended",
+//     // "plugin:jest/recommended",
+//     // "plugin:unicorn/recommended"
+//   ],
+//   // "plugins": ["prettier", "jest", "unicorn"],
+//   "parserOptions": {
+//     "sourceType": "module",
+//     "ecmaFeatures": {
+//       "jsx": true
+//     }
+//   },
+//   "env": {
+//     "es6": true,
+//     "browser": true,
+//     "jest": true
+//   },
+//   "settings": {
+//     "import/resolver": {
+//       "node": {
+//         "extensions": [".js", ".jsx", ".ts", ".tsx"]
+//       }
+//     }
+//   },
+//   "overrides": [
+//     {
+//       "files": ["**/*.ts", "**/*.tsx"],
+//       "parser": "typescript-eslint-parser",
+//       "rules": {
+//         "indent": ["error", 2],
+//         "quotes": ["error", "double"],
+//         // "no-unused-vars": ["warning", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
+//         "no-unused-vars": ["error", { "vars": "all" }],
+//         "no-underscore-dangle": 0,
+//         "no-param-reassign": 0,
+//         "import/no-unresolved": 0,
+//         "linebreak-style": "off",
+//         "semi": ["error", "always"],
+//         "object-curly-newline": [
+//           "error",
+//           { "ImportDeclaration": "always", "ExportDeclaration": "never" }
+//         ],
+//         "comma-dangle": [
+//           "error",
+//           {
+//             "arrays": "ignore",
+//             "objects": "ignore",
+//             "imports": "ignore",
+//             "exports": "ignore",
+//             "functions": "ignore"
+//           }
+//         ],
+//         "max-len": [
+//           "error",
+//           {
+//             "code": 150,
+//             "comments": 150
+//           }
+//         ]
+//       }
+//     }
+//   ]
+// }
+
+
+
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "commonjs": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": ["airbnb-base"],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": ["react"],
+  "rules": {
+    "indent": ["error", 2],
+    "quotes": ["error", "double"],
+    "no-unused-vars": ["warn", { "vars": "all" }],
+    "prefer-const": ["warn", {
+        "destructuring": "any",
+        "ignoreReadBeforeAssign": false
+    }],
+    "no-underscore-dangle": 0,
+    "no-param-reassign": 0,
+    "import/no-unresolved": 0,
+    "linebreak-style": "off",
+    "semi": ["error", "always"],
+    "object-curly-newline": ["error", { "ImportDeclaration": "never", "ExportDeclaration": "never" }],
+    "comma-dangle": ["error", {
+        "arrays": "ignore",
+        "objects": "ignore",
+        "imports": "ignore",
+        "exports": "ignore",
+        "functions": "ignore"
+    }],
+    "max-len": ["error", {
+      "code": 150,
+      "comments": 150
+    }]
+  }
+}

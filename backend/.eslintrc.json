@@ -1,20 +1,59 @@
+// {
+//   "env": {
+//     "node": true,
+//     "es6": true,
+//     "mocha": true
+//   },
+//   "extends": "airbnb/base",
+//   "settings": {
+//     "import/resolver": {
+//       "node": {
+//         "moduleDirectory": ["src", "node_modules"]
+//       }
+//     }
+//   },
+//   "rules": {
+//      "no-underscore-dangle": 0,
+//      "no-param-reassign": 0,
+//      "import/no-unresolved": 0
+//    }
+// }
 {
   "env": {
-    "node": true,
-    "es6": true,
-    "mocha": true
+    "browser": true,
+    "commonjs": true,
+    "es2021": true
   },
-  "extends": "airbnb/base",
-  "settings": {
-    "import/resolver": {
-      "node": {
-        "moduleDirectory": ["src", "node_modules"]
-      }
-    }
+  "extends": ["airbnb-base"],
+  "parserOptions": {
+    "ecmaVersion": 12
   },
   "rules": {
-     "no-underscore-dangle": 0,
-     "no-param-reassign": 0,
-     "import/no-unresolved": 0
-   }
+    "indent": ["error", 2],
+    "quotes": ["error", "double"],
+    "no-unused-vars": ["warn", { "vars": "all" }],
+    "prefer-const": ["warn", {
+        "destructuring": "any",
+        "ignoreReadBeforeAssign": false
+    }],
+    "no-underscore-dangle": 0,
+    "no-param-reassign": 0,
+    "import/no-unresolved": 0,
+    "linebreak-style": "off",
+    "semi": ["error", "always"],
+    "object-curly-newline": ["error", { "ImportDeclaration": "never", "ExportDeclaration": "never" }],
+    "comma-dangle": ["error", {
+        "arrays": "ignore",
+        "objects": "ignore",
+        "imports": "ignore",
+        "exports": "ignore",
+        "functions": "ignore"
+    }],
+    "max-len": ["error", {
+      "code": 150,
+      "comments": 150
+    }]
+    // "implicit-arrow-linebreak": ["error"]
+    // "import/newline-after-import": ["error", { "count": 0 }]
+  }
 }
