@@ -32,6 +32,7 @@
     "indent": ["error", 2],
     "quotes": ["error", "double"],
     "no-unused-vars": ["warn", { "vars": "all" }],
+    "import/extensions": ["off"],
     "prefer-const": ["warn", {
         "destructuring": "any",
         "ignoreReadBeforeAssign": false

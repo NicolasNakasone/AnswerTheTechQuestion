@@ -14,7 +14,7 @@ const {
   DB_NAME,
 } = process.env;
 
-const sequelize:Sequelize = new Sequelize(
+const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
   {
     logging: false, // set to console.log to see the raw SQL queries
@@ -23,19 +23,19 @@ const sequelize:Sequelize = new Sequelize(
 );
 const basename = path.basename(__filename);
 
-const modelDefiners = [];
-// const modelDefiners: any[] = [];
+// const modelDefiners = [];
+const modelDefiners: any[] = [];
 
 // Leemos todos los archivos de la carpeta Models, los requerimos y agregamos al arreglo modelDefiners
 fs.readdirSync(path.join(__dirname, "/models"))
   .filter(
-    (file) =>
-    // (file: string) =>
+    // (file) =>
+    (file: string) =>
       // eslint-disable-next-line implicit-arrow-linebreak
       file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
   )
-  .forEach((file) => {
-  // .forEach((file: any) => {
+  // .forEach((file) => {
+  .forEach((file: any) => {
     modelDefiners.push(require(path.join(__dirname, "/models", file)));
   });
 
@@ -56,8 +56,13 @@ const { Pokemon } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
-// export sequelize;
+
+export const conn = sequelize;
+// console.log({ conn });
+
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize, // para importart la conexión { conn } = require('./db.js');
 };
+
+// export default conn;

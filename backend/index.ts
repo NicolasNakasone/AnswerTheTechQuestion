@@ -19,10 +19,11 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 import server from "./src/app";
 import { conn } from "./src/db";
+// console.log({ conn });
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
-  server.listen(3001, () => {
-    console.log("%s listening at 3001"); 
-  });
+  server.listen(server.get("port"), () => {
+    console.log(`Listening at port ${process.env.API_PORT}!`);
+  }); 
 });
