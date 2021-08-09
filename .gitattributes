@@ -1,3 +1,4 @@
 # *.ts linguist-language
-*.ts linguist-detectable
-*.tsx linguist-detectable
+backend/* linguist-vendored=false
+*.ts linguist-detectable=true
+# *.tsx linguist-detectable
