@@ -1,5 +1,5 @@
+# *.ts linguist-language
 *.js linguist-language=TypeScript
-# *.ts linguist-language=TypeScript
-# backend/* linguist-vendored=false
-# *.ts linguist-detectable=true
-# *.tsx linguist-detectable
+backend/* linguist-vendored=false
+*.ts linguist-detectable=true
+*.tsx linguist-detectable=true
