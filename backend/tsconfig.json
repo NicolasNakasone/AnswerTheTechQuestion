@@ -1,16 +1,22 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "allowJs": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "target": "es6",
     "lib": ["ESNext"],
-    "strict": false,
+    "removeComments": true,
     "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "sourceMap": true,
-    "outDir": "dist",
-    "resolveJsonModule": true
+    "target": "es2017",
+    "module": "commonjs",
+    "outDir": "lib",
+    "skipLibCheck": true,
+    "esModuleInterop": true
   },
-  "include": ["src/**/*", "index.ts"]
+  "include": ["src/**/*.ts"],
+  "exclude": [
+    "node_modules/**/*",
+    ".serverless/**/*",
+    ".esbuild/**/*",
+    ".vscode/**/*"
+  ]
 }
