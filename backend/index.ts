@@ -21,7 +21,6 @@ import server from "./src/app";
 import { conn } from "./src/db";
 // console.log({ conn });
 
-const a = "";
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
   server.listen(server.get("port"), () => {
