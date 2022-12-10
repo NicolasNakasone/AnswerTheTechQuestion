@@ -1,13 +1,10 @@
-/* eslint-disable import/extensions */
-// /* eslint-disable no-unused-vars */
-/* eslint-disable prefer-const */
 import { StrictMode } from 'react'
 
-import ReactDOM from 'react-dom'
+import { render } from 'react-dom'
+import { App } from 'src/App'
+import 'src/index.css'
 
-import App from './App'
-
-ReactDOM.render(
+render(
   <StrictMode>
     <App />
   </StrictMode>,
