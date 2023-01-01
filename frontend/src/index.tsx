@@ -1,13 +1,12 @@
-/* eslint-disable import/extensions */
-// /* eslint-disable no-unused-vars */
-/* eslint-disable prefer-const */
-import { StrictMode } from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
+import { StrictMode } from 'react'
 
-ReactDOM.render(
+import { render } from 'react-dom'
+import { App } from 'src/App'
+import 'src/index.css'
+
+render(
   <StrictMode>
     <App />
   </StrictMode>,
-  document.getElementById("root")
-);
+  document.getElementById('root')
+)
