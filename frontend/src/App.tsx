@@ -1,7 +1,12 @@
+import { Route, Routes } from 'react-router-dom'
+import { routes } from 'src/constants/routes'
+import { Home, Trivia } from 'src/pages'
+
 export const App = () => {
   return (
-    <div className="App">
-      <h1>Answer The Tech Question</h1>
-    </div>
+    <Routes>
+      <Route path={routes.home} element={<Home />} />
+      <Route path={routes.trivia} element={<Trivia />} />
+    </Routes>
   )
 }
