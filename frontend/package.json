@@ -19,15 +19,16 @@
     "react-router-dom": "^6.6.1",
     "react-scripts": "5.0.1",
     "typescript": "^4.9.4",
+    "uuid": "^9.0.0",
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
-    "eslint": "*",
-    "prettier": "*",
     "babel-eslint": "*",
+    "eslint": "*",
     "eslint-config-prettier": "*",
     "eslint-formatter-table": "*",
-    "eslint-plugin-prettier": "*"
+    "eslint-plugin-prettier": "*",
+    "prettier": "*"
   },
   "scripts": {
     "start": "react-scripts start",
