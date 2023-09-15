@@ -6,7 +6,8 @@ import { BrowserRouter } from 'react-router-dom'
 import { App } from 'src/App'
 import 'src/index.css'
 
-const root = createRoot(document.getElementById('root'))
+const root = createRoot(document.getElementById('root') as HTMLElement)
+
 root.render(
   <StrictMode>
     <ChakraProvider>
