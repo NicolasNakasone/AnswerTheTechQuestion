@@ -1,15 +1,11 @@
 {
   "parser": "@typescript-eslint/parser",
-  "plugins": [
-    "react",
-    "@typescript-eslint",
-    "import",
-    "prettier"
-  ],
+  "plugins": ["react", "import", "prettier"],
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
   ],
   "env": {
     "es6": true,
@@ -23,25 +19,31 @@
     }
   },
   "rules": {
-    "react/display-name": "off" ,
+    "react/display-name": "off",
     "react/jsx-no-duplicate-props": [1, { "ignoreCase": true }],
     "react/jsx-no-undef": 1,
-    "react/jsx-pascal-case": [1, {
-      "allowAllCaps": true,
-      "ignore": []
-    }],
+    "react/jsx-pascal-case": [
+      1,
+      {
+        "allowAllCaps": true,
+        "ignore": []
+      }
+    ],
     "react/jsx-uses-react": 2,
     "react/jsx-uses-vars": 1,
     "react/no-deprecated": 1,
     "react/react-in-jsx-scope": 0,
     "react/jsx-no-useless-fragment": 1,
     "react/self-closing-comp": ["error"],
-    "react/jsx-sort-props": [2, {
-      "noSortAlphabetically": true,
-      "reservedFirst": true,
-      "callbacksLast": true,
-      "ignoreCase": false
-    }],
+    "react/jsx-sort-props": [
+      2,
+      {
+        "noSortAlphabetically": true,
+        "reservedFirst": true,
+        "callbacksLast": true,
+        "ignoreCase": false
+      }
+    ],
     "@typescript-eslint/no-explicit-any": 1,
     "@typescript-eslint/no-var-requires": 0,
     "@typescript-eslint/no-unused-vars": [
@@ -56,10 +58,7 @@
     "no-console": [
       2,
       {
-        "allow": [
-          "warn",
-          "error"
-        ]
+        "allow": ["warn", "error"]
       }
     ],
     "no-var": 1,
@@ -67,7 +66,7 @@
     "import/order": [
       "error",
       {
-        "groups": [ "builtin", "external", "internal", ["parent", "sibling"] ],
+        "groups": ["builtin", "external", "internal", ["parent", "sibling"]],
         "pathGroups": [
           {
             "pattern": "react",
@@ -106,6 +105,7 @@
   },
   "ignorePatterns": [
     "**/*.js",
+    "**/*.config.ts",
     "**/*.json",
     "node_modules",
     "public",

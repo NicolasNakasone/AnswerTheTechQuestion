@@ -31,7 +31,7 @@ export const QuestionCard = ({
   )
 
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout
+    let timeoutId: number
 
     if (timer > 0 && !selectedAnswerID) {
       timeoutId = setTimeout(() => {
