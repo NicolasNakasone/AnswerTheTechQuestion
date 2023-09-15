@@ -23,6 +23,7 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
+    "@types/uuid": "^9.0.4",
     "babel-eslint": "*",
     "eslint": "*",
     "eslint-config-prettier": "*",
@@ -36,7 +37,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint src",
-    "format": "eslint src --format table --fix"
+    "format": "eslint src --format table --fix",
+    "type-check": "tsc --pretty --noEmit"
   },
   "eslintConfig": {
     "extends": [

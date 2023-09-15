@@ -21,7 +21,7 @@ export const TriviaResult = ({
         {answeredIDs.map((answeredID, i) => {
           const isCorrect = currentTrivia[i].correctID === answeredID
           return (
-            <ListItem key={answeredID}>
+            <ListItem key={`${answeredID}${i}`}>
               {`${currentTrivia[i].question} ${
                 isCorrect ? `Correcta` : `Incorrecta`
               }`}

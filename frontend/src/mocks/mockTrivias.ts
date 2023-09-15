@@ -53,47 +53,33 @@ const mockQuestion3: IQuestion = {
 
 const mockTrivia: IQuestion[] = [mockQuestion, mockQuestion2, mockQuestion3]
 
-/* 
-  1- Barajar los indices
-  [2, 3, 1, 0]
-  2- Usar estos indices para hacer el cambio
-  a[2] = a[0] <-> a[0] = a[2]
-  3- Luego quitar con .pop() el elemento actual de la lista de indices barajados
-  4- Volver al paso 1 hasta terminar con la lista
-*/
-
-/* 
-  Hacer un diccionario de indices usados para hacer el paso 1, sino no va a funcionar
-*/
-
 const shuffleAnswers = (trivia: IQuestion[]): IQuestion[] => {
-  const shuffledTrivia: IQuestion[] = [...trivia]
+  const shuffledTrivia = Array.from(trivia)
 
   shuffledTrivia.forEach(({ answers }) => {
-    const usedIndexs = {}
-    let randomIndex
+    const shuffledIndexes = Array.from({ length: answers.length }, (_, i) => i)
 
-    for (let i = 0; i < answers.length; i++) {
-      randomIndex = Math.floor(Math.random() * answers.length)
-
-      usedIndexs[randomIndex] = randomIndex
-
-      if (i !== 0) {
-        while (usedIndexs[randomIndex]) {
-          randomIndex = Math.floor(Math.random() * answers.length)
-        }
-      }
-
-      const auxOption = answers[i]
-      answers[i] = answers[randomIndex]
-      answers[randomIndex] = auxOption
+    for (let i = shuffledIndexes.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[shuffledIndexes[i], shuffledIndexes[j]] = [
+        shuffledIndexes[j],
+        shuffledIndexes[i],
+      ]
     }
 
-    // eslint-disable-next-line no-console
-    // console.log(usedIndexs)
+    const optionIdToShuffledIndex: { [key: string]: number } = {}
+
+    shuffledIndexes.forEach((index, shuffledIndex) => {
+      const optionID = answers[index].optionID
+      optionIdToShuffledIndex[optionID] = shuffledIndex
+    })
+
+    answers.sort(
+      (a, b) =>
+        optionIdToShuffledIndex[a.optionID] -
+        optionIdToShuffledIndex[b.optionID]
+    )
   })
-  // console.table(shuffledTrivia)
-  // console.log(shuffledTrivia.map(t => console.table(t.answers)))
 
   return shuffledTrivia
 }

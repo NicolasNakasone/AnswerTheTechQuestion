@@ -5,8 +5,8 @@ import { IQuestion } from 'src/types'
 
 interface IAnswerList {
   currentQuestion: IQuestion
-  selectedAnswerID: string
-  setSelectedAnswerID: (value: SetStateAction<string>) => void
+  selectedAnswerID: string | boolean
+  setSelectedAnswerID: (value: SetStateAction<string | boolean>) => void
 }
 
 export const AnswerList = ({
@@ -25,7 +25,7 @@ export const AnswerList = ({
         return (
           <Button
             key={answer.optionID}
-            disabled={Boolean(selectedAnswerID)}
+            isDisabled={Boolean(selectedAnswerID)}
             sx={{
               backgroundColor:
                 selectedAnswerID === answer.optionID

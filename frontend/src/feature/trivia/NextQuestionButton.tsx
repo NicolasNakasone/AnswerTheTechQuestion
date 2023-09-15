@@ -9,8 +9,9 @@ interface INextQuestionButton {
   setCurrentQuestion: (value: SetStateAction<IQuestion>) => void
   setCurrentIndex: (value: SetStateAction<number>) => void
   setAnsweredIDs: (value: SetStateAction<string[]>) => void
-  selectedAnswerID: string
-  setSelectedAnswerID: (value: SetStateAction<string>) => void
+  selectedAnswerID: string | boolean
+  setSelectedAnswerID: (value: SetStateAction<string | boolean>) => void
+  setTimer: (value: SetStateAction<number>) => void
 }
 
 export const NextQuestionButton = ({
@@ -21,17 +22,25 @@ export const NextQuestionButton = ({
   setAnsweredIDs,
   selectedAnswerID,
   setSelectedAnswerID,
+  setTimer,
 }: INextQuestionButton): JSX.Element => {
   return (
     <Button
-      disabled={!selectedAnswerID}
+      isDisabled={!selectedAnswerID}
       onClick={() => {
         const newIndex = currentIndex + 1
 
         setCurrentQuestion(structuredClone(currentTrivia[newIndex]))
         setCurrentIndex(newIndex)
-        setSelectedAnswerID('')
-        setAnsweredIDs(prev => structuredClone(prev.concat(selectedAnswerID)))
+        setAnsweredIDs(prev =>
+          structuredClone(
+            prev.concat(
+              typeof selectedAnswerID === 'string' ? selectedAnswerID : ''
+            )
+          )
+        )
+        setSelectedAnswerID(false)
+        setTimer(5)
       }}
     >
       {currentIndex < currentTrivia.length - 1 ? `Siguiente` : `Ver resultados`}
