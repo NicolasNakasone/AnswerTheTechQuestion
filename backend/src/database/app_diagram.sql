@@ -4,14 +4,21 @@ CREATE TABLE "User" (
   "updated_at" timestamp,
   "full_name" varchar(255),
   "image" varchar(255),
-  "total_points" int
+  "total_points" int,
+  "user_rank_id" varchar(36),
+  "user_level_id" varchar(36)
 );
 
-CREATE TABLE "Answer" (
+CREATE TABLE "UserRank" (
   "id" varchar(36) PRIMARY KEY,
-  "trivia_id" varchar(36),
-  "label" varchar(255),
-  "is_correct" boolean
+  "name" varchar(255),
+  "description" text
+);
+
+CREATE TABLE "UserLevel" (
+  "id" varchar(36) PRIMARY KEY,
+  "number" int,
+  "experience_points" int
 );
 
 CREATE TABLE "Category" (
@@ -20,12 +27,24 @@ CREATE TABLE "Category" (
   "description" text
 );
 
-CREATE TABLE "Trivia" (
+CREATE TABLE "Question" (
   "id" varchar(36) PRIMARY KEY,
-  "created_at" timestamp,
-  "updated_at" timestamp,
   "question" text,
-  "correct_id" varchar(36)
+  "user_rank_id" varchar(36),
+  "correct_answer_id" varchar(36)
+);
+
+CREATE TABLE "CategoryQuestion" (
+  "id" varchar(36) PRIMARY KEY,
+  "category_id" varchar(36),
+  "question_id" varchar(36)
+);
+
+CREATE TABLE "Answer" (
+  "id" varchar(36) PRIMARY KEY,
+  "option" text,
+  "is_correct" boolean,
+  "question_id" varchar(36)
 );
 
 CREATE TABLE "Comment" (
@@ -33,7 +52,7 @@ CREATE TABLE "Comment" (
   "content" text,
   "created_at" timestamp,
   "user_id" varchar(36),
-  "trivia_id" varchar(36)
+  "question_id" varchar(36)
 );
 
 CREATE TABLE "Rating" (
@@ -41,7 +60,7 @@ CREATE TABLE "Rating" (
   "score" int,
   "created_at" timestamp,
   "user_id" varchar(36),
-  "trivia_id" varchar(36)
+  "question_id" varchar(36)
 );
 
 CREATE TABLE "Following" (
@@ -52,16 +71,11 @@ CREATE TABLE "Following" (
 
 CREATE TABLE "Authentication" (
   "id" varchar(36) PRIMARY KEY,
-  "username" varchar(255),
+  "username" varchar(255) UNIQUE,
   "password_hash" varchar(255),
-  "email" varchar(255),
+  "email" varchar(255) UNIQUE,
+  "user_id" varchar(36),
   "role" varchar(50)
-);
-
-CREATE TABLE "ErrorLog" (
-  "id" varchar(36) PRIMARY KEY,
-  "description" text,
-  "created_at" timestamp
 );
 
 CREATE TABLE "SessionLog" (
@@ -73,27 +87,35 @@ CREATE TABLE "SessionLog" (
 
 CREATE TABLE "ActivityLog" (
   "id" varchar(36) PRIMARY KEY,
-  "activity_description" text,
-  "user_id" varchar(36),
-  "activity_time" timestamp
+  "activity_description" text
 );
 
-ALTER TABLE "Answer" ADD FOREIGN KEY ("trivia_id") REFERENCES "Trivia" ("id");
+ALTER TABLE "User" ADD FOREIGN KEY ("user_rank_id") REFERENCES "UserRank" ("id");
 
-ALTER TABLE "Trivia" ADD FOREIGN KEY ("correct_id") REFERENCES "Answer" ("id");
+ALTER TABLE "User" ADD FOREIGN KEY ("user_level_id") REFERENCES "UserLevel" ("id");
+
+ALTER TABLE "Question" ADD FOREIGN KEY ("user_rank_id") REFERENCES "UserRank" ("id");
+
+ALTER TABLE "Question" ADD FOREIGN KEY ("correct_answer_id") REFERENCES "Answer" ("id");
+
+ALTER TABLE "CategoryQuestion" ADD FOREIGN KEY ("category_id") REFERENCES "Category" ("id");
+
+ALTER TABLE "CategoryQuestion" ADD FOREIGN KEY ("question_id") REFERENCES "Question" ("id");
+
+ALTER TABLE "Answer" ADD FOREIGN KEY ("question_id") REFERENCES "Question" ("id");
 
 ALTER TABLE "Comment" ADD FOREIGN KEY ("user_id") REFERENCES "User" ("id");
 
-ALTER TABLE "Comment" ADD FOREIGN KEY ("trivia_id") REFERENCES "Trivia" ("id");
+ALTER TABLE "Comment" ADD FOREIGN KEY ("question_id") REFERENCES "Question" ("id");
 
 ALTER TABLE "Rating" ADD FOREIGN KEY ("user_id") REFERENCES "User" ("id");
 
-ALTER TABLE "Rating" ADD FOREIGN KEY ("trivia_id") REFERENCES "Trivia" ("id");
+ALTER TABLE "Rating" ADD FOREIGN KEY ("question_id") REFERENCES "Question" ("id");
 
 ALTER TABLE "Following" ADD FOREIGN KEY ("follower_id") REFERENCES "User" ("id");
 
 ALTER TABLE "Following" ADD FOREIGN KEY ("followee_id") REFERENCES "User" ("id");
 
-ALTER TABLE "SessionLog" ADD FOREIGN KEY ("user_id") REFERENCES "User" ("id");
+ALTER TABLE "Authentication" ADD FOREIGN KEY ("user_id") REFERENCES "User" ("id");
 
-ALTER TABLE "ActivityLog" ADD FOREIGN KEY ("user_id") REFERENCES "User" ("id");
+ALTER TABLE "SessionLog" ADD FOREIGN KEY ("user_id") REFERENCES "User" ("id");
