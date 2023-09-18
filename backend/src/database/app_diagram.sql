@@ -90,6 +90,19 @@ CREATE TABLE "ActivityLog" (
   "activity_description" text
 );
 
+CREATE TABLE "Trivia" (
+  "id" varchar(36) PRIMARY KEY,
+  "created_at" timestamp,
+  "updated_at" timestamp,
+  "title" varchar(255),
+  "description" text,
+  "user_id" varchar(36),
+  "categories" Category[],
+  "levels" UserLevel[],
+  "questions" Question[],
+  "ratings" Rating[]
+);
+
 ALTER TABLE "User" ADD FOREIGN KEY ("user_rank_id") REFERENCES "UserRank" ("id");
 
 ALTER TABLE "User" ADD FOREIGN KEY ("user_level_id") REFERENCES "UserLevel" ("id");
@@ -119,3 +132,11 @@ ALTER TABLE "Following" ADD FOREIGN KEY ("followee_id") REFERENCES "User" ("id")
 ALTER TABLE "Authentication" ADD FOREIGN KEY ("user_id") REFERENCES "User" ("id");
 
 ALTER TABLE "SessionLog" ADD FOREIGN KEY ("user_id") REFERENCES "User" ("id");
+
+ALTER TABLE "Trivia" ADD FOREIGN KEY ("user_id") REFERENCES "User" ("id");
+
+ALTER TABLE "Trivia" ADD FOREIGN KEY ("categories") REFERENCES "Category" ("id");
+
+ALTER TABLE "Trivia" ADD FOREIGN KEY ("levels") REFERENCES "UserLevel" ("id");
+
+ALTER TABLE "Trivia" ADD FOREIGN KEY ("questions") REFERENCES "Question" ("id");
