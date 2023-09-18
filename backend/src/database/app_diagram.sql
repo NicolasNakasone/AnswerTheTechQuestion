@@ -9,7 +9,7 @@ CREATE TABLE "User" (
   "user_level_id" varchar(36)
 );
 
-CREATE TABLE "UserRank" (
+CREATE TABLE "Rank" (
   "id" varchar(36) PRIMARY KEY,
   "name" varchar(255),
   "description" text
@@ -30,7 +30,7 @@ CREATE TABLE "Category" (
 CREATE TABLE "Question" (
   "id" varchar(36) PRIMARY KEY,
   "question" text,
-  "user_rank_id" varchar(36),
+  "question_rank_id" varchar(36),
   "correct_answer_id" varchar(36)
 );
 
@@ -103,11 +103,11 @@ CREATE TABLE "Trivia" (
   "ratings" Rating[]
 );
 
-ALTER TABLE "User" ADD FOREIGN KEY ("user_rank_id") REFERENCES "UserRank" ("id");
+ALTER TABLE "User" ADD FOREIGN KEY ("user_rank_id") REFERENCES "Rank" ("id");
 
 ALTER TABLE "User" ADD FOREIGN KEY ("user_level_id") REFERENCES "UserLevel" ("id");
 
-ALTER TABLE "Question" ADD FOREIGN KEY ("user_rank_id") REFERENCES "UserRank" ("id");
+ALTER TABLE "Question" ADD FOREIGN KEY ("question_rank_id") REFERENCES "Rank" ("id");
 
 ALTER TABLE "Question" ADD FOREIGN KEY ("correct_answer_id") REFERENCES "Answer" ("id");
 
