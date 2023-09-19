@@ -1,49 +1,42 @@
-import { SetStateAction } from 'react'
+import { SetStateAction, useContext } from 'react'
 
 import { Button } from '@chakra-ui/react'
+import { GameContext } from 'src/context/GameContext'
 import { IQuestion } from 'src/types'
 
 interface INextQuestionButton {
-  currentIndex: number
   currentTrivia: IQuestion[]
-  setCurrentQuestion: (value: SetStateAction<IQuestion>) => void
-  setCurrentIndex: (value: SetStateAction<number>) => void
-  setAnsweredIDs: (value: SetStateAction<string[]>) => void
-  selectedAnswerID: string | boolean
-  setSelectedAnswerID: (value: SetStateAction<string | boolean>) => void
   setTimer: (value: SetStateAction<number>) => void
 }
 
 export const NextQuestionButton = ({
-  currentIndex,
   currentTrivia,
-  setCurrentQuestion,
-  setCurrentIndex,
-  setAnsweredIDs,
-  selectedAnswerID,
-  setSelectedAnswerID,
   setTimer,
 }: INextQuestionButton): JSX.Element => {
-  return (
-    <Button
-      isDisabled={!selectedAnswerID}
-      onClick={() => {
-        const newIndex = currentIndex + 1
+  const {
+    handleAnsweredIds,
+    handleCurrentQuestion,
+    handleSelectedAnswerId,
+    handleQuestionIndex,
+    selectedAnswerId,
+    questionIndex,
+  } = useContext(GameContext)
 
-        setCurrentQuestion(structuredClone(currentTrivia[newIndex]))
-        setCurrentIndex(newIndex)
-        setAnsweredIDs(prev =>
-          structuredClone(
-            prev.concat(
-              typeof selectedAnswerID === 'string' ? selectedAnswerID : ''
-            )
-          )
-        )
-        setSelectedAnswerID(false)
-        setTimer(5)
-      }}
-    >
-      {currentIndex < currentTrivia.length - 1 ? `Siguiente` : `Ver resultados`}
+  const onGoToNextQuestion = () => {
+    const newIndex = questionIndex + 1
+
+    handleCurrentQuestion(structuredClone(currentTrivia[newIndex]))
+    handleQuestionIndex(newIndex)
+    handleAnsweredIds(selectedAnswerId!)
+    handleSelectedAnswerId(null)
+    setTimer(5)
+  }
+
+  return (
+    <Button isDisabled={!selectedAnswerId} onClick={onGoToNextQuestion}>
+      {questionIndex < currentTrivia.length - 1
+        ? `Siguiente`
+        : `Ver resultados`}
     </Button>
   )
 }
