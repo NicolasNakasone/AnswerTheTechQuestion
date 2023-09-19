@@ -1,24 +1,24 @@
+import { useContext } from 'react'
+
 import { Box, Button, List, ListItem, Text } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 import { routes } from 'src/constants/routes'
+import { GameContext } from 'src/context/GameContext'
 import { IQuestion } from 'src/types'
 
 interface ITriviaResult {
-  answeredIDs: string[]
   currentTrivia: IQuestion[]
 }
 
-export const TriviaResult = ({
-  answeredIDs,
-  currentTrivia,
-}: ITriviaResult): JSX.Element => {
+export const TriviaResult = ({ currentTrivia }: ITriviaResult): JSX.Element => {
+  const { answeredIds } = useContext(GameContext)
   const navigate = useNavigate()
 
   return (
     <Box>
       <Text>{`Respuestas:`}</Text>
       <List>
-        {answeredIDs.map((answeredID, i) => {
+        {answeredIds.map((answeredID, i) => {
           const isCorrect = currentTrivia[i].correctID === answeredID
           return (
             <ListItem key={`${answeredID}${i}`}>
