@@ -6,7 +6,6 @@ import { IQuestion } from 'src/types'
 
 interface INextQuestionButton {
   currentTrivia: IQuestion[]
-  setCurrentQuestion: (value: SetStateAction<IQuestion>) => void
   selectedAnswerID: string | boolean
   setSelectedAnswerID: (value: SetStateAction<string | boolean>) => void
   setTimer: (value: SetStateAction<number>) => void
@@ -14,18 +13,21 @@ interface INextQuestionButton {
 
 export const NextQuestionButton = ({
   currentTrivia,
-  setCurrentQuestion,
   selectedAnswerID,
   setSelectedAnswerID,
   setTimer,
 }: INextQuestionButton): JSX.Element => {
-  const { handleAnsweredIds, handleQuestionIndex, questionIndex } =
-    useContext(GameContext)
+  const {
+    handleAnsweredIds,
+    handleCurrentQuestion,
+    handleQuestionIndex,
+    questionIndex,
+  } = useContext(GameContext)
 
   const onGoToNextQuestion = () => {
     const newIndex = questionIndex + 1
 
-    setCurrentQuestion(structuredClone(currentTrivia[newIndex]))
+    handleCurrentQuestion(structuredClone(currentTrivia[newIndex]))
     handleQuestionIndex(newIndex)
     typeof selectedAnswerID === 'string' && handleAnsweredIds(selectedAnswerID)
     setSelectedAnswerID(false)

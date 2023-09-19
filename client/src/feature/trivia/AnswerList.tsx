@@ -1,19 +1,19 @@
-import { SetStateAction } from 'react'
+import { SetStateAction, useContext } from 'react'
 
 import { Box, Button } from '@chakra-ui/react'
-import { IQuestion } from 'src/types'
+import { GameContext } from 'src/context/GameContext'
 
 interface IAnswerList {
-  currentQuestion: IQuestion
   selectedAnswerID: string | boolean
   setSelectedAnswerID: (value: SetStateAction<string | boolean>) => void
 }
 
 export const AnswerList = ({
-  currentQuestion,
   selectedAnswerID,
   setSelectedAnswerID,
 }: IAnswerList): JSX.Element => {
+  const { currentQuestion } = useContext(GameContext)
+
   return (
     <Box
       sx={{

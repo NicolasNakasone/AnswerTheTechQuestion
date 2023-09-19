@@ -13,16 +13,17 @@ interface IQuestionCard {
 const TIMER_DEFAULT_VALUE = 5
 
 export const QuestionCard = ({ currentTrivia }: IQuestionCard): JSX.Element => {
-  const { questionIndex } = useContext(GameContext)
+  const { currentQuestion, handleCurrentQuestion, questionIndex } =
+    useContext(GameContext)
   const [timer, setTimer] = useState(TIMER_DEFAULT_VALUE)
-
-  const [currentQuestion, setCurrentQuestion] = useState<IQuestion>(
-    currentTrivia[0]
-  )
 
   const [selectedAnswerID, setSelectedAnswerID] = useState<string | boolean>(
     false
   )
+
+  useEffect(() => {
+    handleCurrentQuestion(currentTrivia[0])
+  }, [])
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout
@@ -48,7 +49,6 @@ export const QuestionCard = ({ currentTrivia }: IQuestionCard): JSX.Element => {
         <Text>{`${currentQuestion?.question}`}</Text>
         <AnswerList
           {...{
-            currentQuestion,
             selectedAnswerID,
             setSelectedAnswerID,
           }}
@@ -56,7 +56,6 @@ export const QuestionCard = ({ currentTrivia }: IQuestionCard): JSX.Element => {
         <NextQuestionButton
           {...{
             currentTrivia,
-            setCurrentQuestion,
             selectedAnswerID,
             setSelectedAnswerID,
             setTimer,
