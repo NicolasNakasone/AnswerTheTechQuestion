@@ -13,11 +13,14 @@ interface IQuestionCard {
 const TIMER_DEFAULT_VALUE = 5
 
 export const QuestionCard = ({ currentTrivia }: IQuestionCard): JSX.Element => {
-  const { currentQuestion, handleCurrentQuestion, questionIndex } =
-    useContext(GameContext)
+  const {
+    currentQuestion,
+    handleCurrentQuestion,
+    handleSelectedAnswerId,
+    selectedAnswerId,
+    questionIndex,
+  } = useContext(GameContext)
   const [timer, setTimer] = useState(TIMER_DEFAULT_VALUE)
-
-  const [selectedAnswerID, setSelectedAnswerID] = useState<string | null>(null)
 
   useEffect(() => {
     handleCurrentQuestion(currentTrivia[0])
@@ -26,18 +29,18 @@ export const QuestionCard = ({ currentTrivia }: IQuestionCard): JSX.Element => {
   useEffect(() => {
     let timeoutId: NodeJS.Timeout
 
-    if (timer > 0 && !selectedAnswerID) {
+    if (timer > 0 && !selectedAnswerId) {
       timeoutId = setTimeout(() => {
         setTimer(timer - 1)
       }, 1000)
-    } else if (timer === 0 && !selectedAnswerID) {
-      setSelectedAnswerID(' ')
+    } else if (timer === 0 && !selectedAnswerId) {
+      handleSelectedAnswerId(' ')
     }
 
     return () => {
       clearTimeout(timeoutId)
     }
-  }, [timer, selectedAnswerID])
+  }, [timer, selectedAnswerId])
 
   return (
     <>
@@ -45,20 +48,8 @@ export const QuestionCard = ({ currentTrivia }: IQuestionCard): JSX.Element => {
       {Boolean(timer) && <Text>{`Tiempo restante: ${timer} segundos`}</Text>}
       <Box>
         <Text>{`${currentQuestion?.question}`}</Text>
-        <AnswerList
-          {...{
-            selectedAnswerID,
-            setSelectedAnswerID,
-          }}
-        />
-        <NextQuestionButton
-          {...{
-            currentTrivia,
-            selectedAnswerID,
-            setSelectedAnswerID,
-            setTimer,
-          }}
-        />
+        <AnswerList />
+        <NextQuestionButton {...{ currentTrivia, setTimer }} />
       </Box>
       <Progress
         min={0}

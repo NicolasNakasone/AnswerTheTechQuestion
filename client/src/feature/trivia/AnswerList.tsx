@@ -1,18 +1,11 @@
-import { SetStateAction, useContext } from 'react'
+import { useContext } from 'react'
 
 import { Box, Button } from '@chakra-ui/react'
 import { GameContext } from 'src/context/GameContext'
 
-interface IAnswerList {
-  selectedAnswerID: string | null
-  setSelectedAnswerID: (value: SetStateAction<string | null>) => void
-}
-
-export const AnswerList = ({
-  selectedAnswerID,
-  setSelectedAnswerID,
-}: IAnswerList): JSX.Element => {
-  const { currentQuestion } = useContext(GameContext)
+export const AnswerList = (): JSX.Element => {
+  const { currentQuestion, handleSelectedAnswerId, selectedAnswerId } =
+    useContext(GameContext)
 
   return (
     <Box
@@ -25,21 +18,21 @@ export const AnswerList = ({
         return (
           <Button
             key={answer.optionID}
-            isDisabled={Boolean(selectedAnswerID)}
+            isDisabled={Boolean(selectedAnswerId)}
             sx={{
               backgroundColor:
-                selectedAnswerID === answer.optionID
+                selectedAnswerId === answer.optionID
                   ? answer.isCorrect
                     ? 'green.100 !important'
                     : 'red.100 !important'
                   : '',
               opacity:
-                !selectedAnswerID || selectedAnswerID === answer.optionID
+                !selectedAnswerId || selectedAnswerId === answer.optionID
                   ? `1 !important`
                   : 0.4,
             }}
             onClick={() => {
-              setSelectedAnswerID(answer.optionID)
+              handleSelectedAnswerId(answer.optionID)
             }}
           >
             {answer?.option}

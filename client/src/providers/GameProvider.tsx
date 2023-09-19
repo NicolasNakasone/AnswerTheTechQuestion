@@ -8,6 +8,7 @@ export const GameProvider = ({ children }: BaseProvider): JSX.Element => {
   const [questionIndex, setQuestionIndex] = useState(0)
   const [answeredIds, setAnsweredIds] = useState<string[]>([])
   const [currentQuestion, setCurrentQuestion] = useState<IQuestion | null>(null)
+  const [selectedAnswerId, setSelectedAnswerId] = useState<string | null>(null)
 
   const handleQuestionIndex = (index: number) => setQuestionIndex(index)
 
@@ -16,6 +17,9 @@ export const GameProvider = ({ children }: BaseProvider): JSX.Element => {
 
   const handleCurrentQuestion = (question: IQuestion) =>
     setCurrentQuestion(question)
+
+  const handleSelectedAnswerId = (value: string | null) =>
+    setSelectedAnswerId(value)
 
   return (
     <GameContext.Provider
@@ -26,6 +30,8 @@ export const GameProvider = ({ children }: BaseProvider): JSX.Element => {
         handleAnsweredIds,
         currentQuestion,
         handleCurrentQuestion,
+        selectedAnswerId,
+        handleSelectedAnswerId,
       }}
     >
       {children}

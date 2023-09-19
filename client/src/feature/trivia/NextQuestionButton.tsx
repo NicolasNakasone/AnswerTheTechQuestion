@@ -6,21 +6,19 @@ import { IQuestion } from 'src/types'
 
 interface INextQuestionButton {
   currentTrivia: IQuestion[]
-  selectedAnswerID: string | null
-  setSelectedAnswerID: (value: SetStateAction<string | null>) => void
   setTimer: (value: SetStateAction<number>) => void
 }
 
 export const NextQuestionButton = ({
   currentTrivia,
-  selectedAnswerID,
-  setSelectedAnswerID,
   setTimer,
 }: INextQuestionButton): JSX.Element => {
   const {
     handleAnsweredIds,
     handleCurrentQuestion,
+    handleSelectedAnswerId,
     handleQuestionIndex,
+    selectedAnswerId,
     questionIndex,
   } = useContext(GameContext)
 
@@ -29,13 +27,13 @@ export const NextQuestionButton = ({
 
     handleCurrentQuestion(structuredClone(currentTrivia[newIndex]))
     handleQuestionIndex(newIndex)
-    typeof selectedAnswerID === 'string' && handleAnsweredIds(selectedAnswerID)
-    setSelectedAnswerID(null)
+    handleAnsweredIds(selectedAnswerId!)
+    handleSelectedAnswerId(null)
     setTimer(5)
   }
 
   return (
-    <Button isDisabled={!selectedAnswerID} onClick={onGoToNextQuestion}>
+    <Button isDisabled={!selectedAnswerId} onClick={onGoToNextQuestion}>
       {questionIndex < currentTrivia.length - 1
         ? `Siguiente`
         : `Ver resultados`}
