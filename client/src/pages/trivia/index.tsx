@@ -7,7 +7,7 @@ import { QuestionCard } from 'src/feature/trivia/QuestionCard'
 import { TriviaResult } from 'src/feature/trivia/TriviaResult'
 import { shuffledTrivia } from 'src/mocks/trivias.mock'
 
-export const Trivia = () => {
+export const TriviaPage = () => {
   const { questionIndex } = useContext(GameContext)
 
   return (
