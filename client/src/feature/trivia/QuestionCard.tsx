@@ -17,9 +17,7 @@ export const QuestionCard = ({ currentTrivia }: IQuestionCard): JSX.Element => {
     useContext(GameContext)
   const [timer, setTimer] = useState(TIMER_DEFAULT_VALUE)
 
-  const [selectedAnswerID, setSelectedAnswerID] = useState<string | boolean>(
-    false
-  )
+  const [selectedAnswerID, setSelectedAnswerID] = useState<string | null>(null)
 
   useEffect(() => {
     handleCurrentQuestion(currentTrivia[0])
@@ -33,7 +31,7 @@ export const QuestionCard = ({ currentTrivia }: IQuestionCard): JSX.Element => {
         setTimer(timer - 1)
       }, 1000)
     } else if (timer === 0 && !selectedAnswerID) {
-      setSelectedAnswerID(true)
+      setSelectedAnswerID(' ')
     }
 
     return () => {

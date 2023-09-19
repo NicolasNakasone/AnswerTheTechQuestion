@@ -4,8 +4,8 @@ import { Box, Button } from '@chakra-ui/react'
 import { GameContext } from 'src/context/GameContext'
 
 interface IAnswerList {
-  selectedAnswerID: string | boolean
-  setSelectedAnswerID: (value: SetStateAction<string | boolean>) => void
+  selectedAnswerID: string | null
+  setSelectedAnswerID: (value: SetStateAction<string | null>) => void
 }
 
 export const AnswerList = ({

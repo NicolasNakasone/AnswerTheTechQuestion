@@ -6,8 +6,8 @@ import { IQuestion } from 'src/types'
 
 interface INextQuestionButton {
   currentTrivia: IQuestion[]
-  selectedAnswerID: string | boolean
-  setSelectedAnswerID: (value: SetStateAction<string | boolean>) => void
+  selectedAnswerID: string | null
+  setSelectedAnswerID: (value: SetStateAction<string | null>) => void
   setTimer: (value: SetStateAction<number>) => void
 }
 
@@ -30,7 +30,7 @@ export const NextQuestionButton = ({
     handleCurrentQuestion(structuredClone(currentTrivia[newIndex]))
     handleQuestionIndex(newIndex)
     typeof selectedAnswerID === 'string' && handleAnsweredIds(selectedAnswerID)
-    setSelectedAnswerID(false)
+    setSelectedAnswerID(null)
     setTimer(5)
   }
 
