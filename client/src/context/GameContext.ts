@@ -1,14 +1,14 @@
 import { createContext } from 'react'
 
-import { IQuestion } from 'src/types'
+import { Question } from 'src/types'
 
 interface GameContextProps {
   questionIndex: number
   handleQuestionIndex: (index: number) => void
   answeredIds: string[]
   handleAnsweredIds: (id: string) => void
-  currentQuestion: IQuestion | null
-  handleCurrentQuestion: (question: IQuestion) => void
+  currentQuestion: Question | null
+  handleCurrentQuestion: (question: Question) => void
   selectedAnswerId: string | null
   handleSelectedAnswerId: (value: string | null) => void
 }

@@ -17,22 +17,22 @@ export const AnswerList = (): JSX.Element => {
       {currentQuestion?.answers.map(answer => {
         return (
           <Button
-            key={answer.optionID}
+            key={answer.option_id}
             isDisabled={Boolean(selectedAnswerId)}
             sx={{
               backgroundColor:
-                selectedAnswerId === answer.optionID
-                  ? answer.isCorrect
+                selectedAnswerId === answer.option_id
+                  ? answer.is_correct
                     ? 'green.100 !important'
                     : 'red.100 !important'
                   : '',
               opacity:
-                !selectedAnswerId || selectedAnswerId === answer.optionID
+                !selectedAnswerId || selectedAnswerId === answer.option_id
                   ? `1 !important`
                   : 0.4,
             }}
             onClick={() => {
-              handleSelectedAnswerId(answer.optionID)
+              handleSelectedAnswerId(answer.option_id)
             }}
           >
             {answer?.option}
