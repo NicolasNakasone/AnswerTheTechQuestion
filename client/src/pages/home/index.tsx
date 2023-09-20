@@ -12,6 +12,9 @@ export const HomePage = (): JSX.Element => {
         {`La aplicación que te permitirá aumentar tus habilidades técnicas de
         manera entretenida`}
       </Text>
+      <Button onClick={() => navigate(routes.featuredTrivia)}>
+        {`Trivias destacadas`}
+      </Button>
       <Button onClick={() => navigate(routes.trivia)}>
         {`Ir a trivia de prueba`}
       </Button>
