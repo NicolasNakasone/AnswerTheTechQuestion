@@ -2,10 +2,10 @@ import { SetStateAction, useContext } from 'react'
 
 import { Button } from '@chakra-ui/react'
 import { GameContext } from 'src/context/GameContext'
-import { IQuestion } from 'src/types'
+import { Trivia } from 'src/types'
 
 interface INextQuestionButton {
-  currentTrivia: IQuestion[]
+  currentTrivia: Trivia[]
   setTimer: (value: SetStateAction<number>) => void
 }
 
@@ -25,7 +25,7 @@ export const NextQuestionButton = ({
   const onGoToNextQuestion = () => {
     const newIndex = questionIndex + 1
 
-    handleCurrentQuestion(structuredClone(currentTrivia[newIndex]))
+    handleCurrentQuestion(structuredClone(currentTrivia[0].questions[newIndex]))
     handleQuestionIndex(newIndex)
     handleAnsweredIds(selectedAnswerId!)
     handleSelectedAnswerId(null)
@@ -34,7 +34,7 @@ export const NextQuestionButton = ({
 
   return (
     <Button isDisabled={!selectedAnswerId} onClick={onGoToNextQuestion}>
-      {questionIndex < currentTrivia.length - 1
+      {questionIndex < currentTrivia[0].questions.length - 1
         ? `Siguiente`
         : `Ver resultados`}
     </Button>

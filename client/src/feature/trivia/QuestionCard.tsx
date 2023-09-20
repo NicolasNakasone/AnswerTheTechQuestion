@@ -4,10 +4,10 @@ import { Box, Progress, Text } from '@chakra-ui/react'
 import { GameContext } from 'src/context/GameContext'
 import { AnswerList } from 'src/feature/trivia/AnswerList'
 import { NextQuestionButton } from 'src/feature/trivia/NextQuestionButton'
-import { IQuestion } from 'src/types'
+import { Trivia } from 'src/types'
 
 interface IQuestionCard {
-  currentTrivia: IQuestion[]
+  currentTrivia: Trivia[]
 }
 
 const TIMER_DEFAULT_VALUE = 5
@@ -23,7 +23,7 @@ export const QuestionCard = ({ currentTrivia }: IQuestionCard): JSX.Element => {
   const [timer, setTimer] = useState(TIMER_DEFAULT_VALUE)
 
   useEffect(() => {
-    handleCurrentQuestion(currentTrivia[0])
+    handleCurrentQuestion(currentTrivia[0].questions[0])
   }, [])
 
   useEffect(() => {
@@ -44,7 +44,9 @@ export const QuestionCard = ({ currentTrivia }: IQuestionCard): JSX.Element => {
 
   return (
     <>
-      <Text>{`Pregunta ${questionIndex + 1} de ${currentTrivia.length}`}</Text>
+      <Text>{`Pregunta ${questionIndex + 1} de ${
+        currentTrivia[0].questions.length
+      }`}</Text>
       {Boolean(timer) && <Text>{`Tiempo restante: ${timer} segundos`}</Text>}
       <Box>
         <Text>{`${currentQuestion?.question}`}</Text>
@@ -53,7 +55,7 @@ export const QuestionCard = ({ currentTrivia }: IQuestionCard): JSX.Element => {
       </Box>
       <Progress
         min={0}
-        max={currentTrivia.length}
+        max={currentTrivia[0].questions.length}
         value={questionIndex}
         sx={{
           '& > div': { backgroundColor: 'green.300' },

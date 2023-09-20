@@ -12,7 +12,7 @@ export const TriviaPage = () => {
 
   return (
     <MainWrapper>
-      {questionIndex !== shuffledTrivia.length ? (
+      {questionIndex !== shuffledTrivia[0].questions.length ? (
         <QuestionCard
           {...{
             currentTrivia: shuffledTrivia,

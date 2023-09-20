@@ -4,10 +4,10 @@ import { Box, Button, List, ListItem, Text } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 import { routes } from 'src/constants/routes'
 import { GameContext } from 'src/context/GameContext'
-import { IQuestion } from 'src/types'
+import { Trivia } from 'src/types'
 
 interface ITriviaResult {
-  currentTrivia: IQuestion[]
+  currentTrivia: Trivia[]
 }
 
 export const TriviaResult = ({ currentTrivia }: ITriviaResult): JSX.Element => {
@@ -18,11 +18,12 @@ export const TriviaResult = ({ currentTrivia }: ITriviaResult): JSX.Element => {
     <Box>
       <Text>{`Respuestas:`}</Text>
       <List>
-        {answeredIds.map((answeredID, i) => {
-          const isCorrect = currentTrivia[i].correctID === answeredID
+        {answeredIds.map((answeredId, i) => {
+          const isCorrect =
+            currentTrivia[0].questions[i].correct_id === answeredId
           return (
-            <ListItem key={`${answeredID}${i}`}>
-              {`${currentTrivia[i].question} ${
+            <ListItem key={`${answeredId}${i}`}>
+              {`${currentTrivia[0].questions[i].question} ${
                 isCorrect ? `Correcta` : `Incorrecta`
               }`}
             </ListItem>
