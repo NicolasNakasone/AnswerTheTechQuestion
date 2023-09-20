@@ -95,12 +95,19 @@ CREATE TABLE "Trivia" (
   "created_at" timestamp,
   "updated_at" timestamp,
   "title" varchar(255),
-  "description" text,
+  "description" text?,
   "user_id" varchar(36),
   "categories" Category[],
   "levels" UserLevel[],
   "questions" Question[],
-  "ratings" Rating[]
+  "total_votes" int
+);
+
+CREATE TABLE "UserTriviaRating" (
+  "id" varchar(36) PRIMARY KEY,
+  "user_id" varchar(36),
+  "trivia_id" varchar(36),
+  "rating" int
 );
 
 ALTER TABLE "User" ADD FOREIGN KEY ("user_rank_id") REFERENCES "Rank" ("id");
@@ -140,3 +147,7 @@ ALTER TABLE "Trivia" ADD FOREIGN KEY ("categories") REFERENCES "Category" ("id")
 ALTER TABLE "Trivia" ADD FOREIGN KEY ("levels") REFERENCES "UserLevel" ("id");
 
 ALTER TABLE "Trivia" ADD FOREIGN KEY ("questions") REFERENCES "Question" ("id");
+
+ALTER TABLE "UserTriviaRating" ADD FOREIGN KEY ("user_id") REFERENCES "User" ("id");
+
+ALTER TABLE "UserTriviaRating" ADD FOREIGN KEY ("trivia_id") REFERENCES "Trivia" ("id");
