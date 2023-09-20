@@ -1,6 +1,6 @@
 {
   "parser": "@typescript-eslint/parser",
-  "plugins": ["react", "import", "prettier"],
+  "plugins": ["react", "import", "prettier", "plugin:prettier/recommended"],
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -92,17 +92,7 @@
     ],
     "no-await-in-loop": 1,
     "no-duplicate-imports": 2,
-    "prettier/prettier": [
-      "error",
-      {
-        "tabWidth": 2,
-        "arrowParens": "avoid",
-        "singleQuote": true,
-        "semi": false,
-        "trailingComma": "es5",
-        "bracketSpacing": true
-      }
-    ]
+    "prettier/prettier": "error"
   },
   "ignorePatterns": [
     "**/*.js",
