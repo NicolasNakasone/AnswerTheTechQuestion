@@ -1,6 +1,6 @@
 import { createContext } from 'react'
 
-import { Question } from 'src/types'
+import { Question, Trivia } from 'src/types'
 
 interface GameContextProps {
   questionIndex: number
@@ -11,6 +11,8 @@ interface GameContextProps {
   handleCurrentQuestion: (question: Question) => void
   selectedAnswerId: string | null
   handleSelectedAnswerId: (value: string | null) => void
+  currentTrivia: Trivia | null
+  handleCurrentTrivia: (id: string) => Trivia | null
 }
 
 export const GameContext = createContext<GameContextProps>({
@@ -22,4 +24,6 @@ export const GameContext = createContext<GameContextProps>({
   handleCurrentQuestion: () => null,
   selectedAnswerId: null,
   handleSelectedAnswerId: () => null,
+  currentTrivia: null,
+  handleCurrentTrivia: () => null,
 })

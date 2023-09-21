@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { GameContext } from 'src/context/GameContext'
-import { Question } from 'src/types'
+import { shuffledTrivia } from 'src/mocks/trivias.mock'
+import { Question, Trivia } from 'src/types'
 import { BaseProvider } from 'src/types/provider'
 
 export const GameProvider = ({ children }: BaseProvider): JSX.Element => {
@@ -9,17 +10,25 @@ export const GameProvider = ({ children }: BaseProvider): JSX.Element => {
   const [answeredIds, setAnsweredIds] = useState<string[]>([])
   const [currentQuestion, setCurrentQuestion] = useState<Question | null>(null)
   const [selectedAnswerId, setSelectedAnswerId] = useState<string | null>(null)
+  const [currentTrivia, setCurrentTrivia] = useState<Trivia | null>(null)
 
   const handleQuestionIndex = (index: number) => setQuestionIndex(index)
 
-  const handleAnsweredIds = (id: string) =>
-    setAnsweredIds(prev => structuredClone(prev.concat(id)))
+  const handleAnsweredIds = (id: string) => setAnsweredIds(prev => structuredClone(prev.concat(id)))
 
-  const handleCurrentQuestion = (question: Question) =>
-    setCurrentQuestion(question)
+  const handleCurrentQuestion = (question: Question) => setCurrentQuestion(question)
 
-  const handleSelectedAnswerId = (value: string | null) =>
-    setSelectedAnswerId(value)
+  const handleSelectedAnswerId = (value: string | null) => setSelectedAnswerId(value)
+
+  const handleCurrentTrivia = (id: string) => {
+    const response = shuffledTrivia.find(trivia => trivia.id === id) || null
+    response && setCurrentTrivia(response)
+    return response
+  }
+
+  useEffect(() => {
+    handleCurrentTrivia(shuffledTrivia[0].id)
+  }, [])
 
   return (
     <GameContext.Provider
@@ -32,6 +41,8 @@ export const GameProvider = ({ children }: BaseProvider): JSX.Element => {
         handleCurrentQuestion,
         selectedAnswerId,
         handleSelectedAnswerId,
+        currentTrivia,
+        handleCurrentTrivia,
       }}
     >
       {children}
