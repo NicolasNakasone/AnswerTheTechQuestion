@@ -1,6 +1,6 @@
 {
   "parser": "@typescript-eslint/parser",
-  "plugins": ["react", "import", "prettier", "plugin:prettier/recommended"],
+  "plugins": ["react", "import", "prettier"],
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
