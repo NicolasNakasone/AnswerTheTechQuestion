@@ -17,10 +17,15 @@ export interface Trivia {
   updated_at: string
   title: string
   description: string | null
-  user_id: string
+  user: {
+    id: string
+    full_name: string
+    profile_image: string
+  }
   categories: Category[]
   levels: UserLevel[]
   questions: Question[]
+  average_score: number
   total_votes: number
 }
 
