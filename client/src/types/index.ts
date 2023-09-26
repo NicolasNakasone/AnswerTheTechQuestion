@@ -29,7 +29,14 @@ export interface Trivia {
   total_votes: number
 }
 
-export enum Category {
+export interface Category {
+  id: string
+  label: CategoryLabel
+  bg_color: string
+  text_color: string
+}
+
+export enum CategoryLabel {
   HTML = 'HTML',
   CSS = 'CSS',
   JAVASCRIPT = 'JAVASCRIPT',
