@@ -1,8 +1,8 @@
-interface RangeSVG {
+interface RankSVG {
   isDisabled: boolean
 }
 
-export const BasicSVG = ({ isDisabled }: RangeSVG): JSX.Element => {
+export const BasicSVG = ({ isDisabled }: RankSVG): JSX.Element => {
   return (
     <svg height="16" viewBox="0 0 16 16" fill={!isDisabled ? '#6EC671' : '#E2E8F0'}>
       <rect width="4" height="8" x="0" y="8" />
@@ -12,7 +12,7 @@ export const BasicSVG = ({ isDisabled }: RangeSVG): JSX.Element => {
   )
 }
 
-export const IntermediateSVG = ({ isDisabled }: RangeSVG): JSX.Element => {
+export const IntermediateSVG = ({ isDisabled }: RankSVG): JSX.Element => {
   return (
     <svg height="28" viewBox="0 0 18 28" fill={!isDisabled ? '#FFA741' : '#E2E8F0'}>
       <rect width="4" height="20" x="2" y="8" />
@@ -22,7 +22,7 @@ export const IntermediateSVG = ({ isDisabled }: RangeSVG): JSX.Element => {
   )
 }
 
-export const AdvancedSVG = ({ isDisabled }: RangeSVG): JSX.Element => {
+export const AdvancedSVG = ({ isDisabled }: RankSVG): JSX.Element => {
   return (
     <svg height="40" viewBox="0 0 18 40" fill={!isDisabled ? '#FF7777' : '#E2E8F0'}>
       <rect width="4" height="32" x="2" y="8" />
