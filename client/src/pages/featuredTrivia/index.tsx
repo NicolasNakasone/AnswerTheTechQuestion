@@ -1,7 +1,7 @@
-import { Badge, Box, Button, Text } from '@chakra-ui/react'
-import { AdvancedSVG, BasicSVG, IntermediateSVG } from 'src/assets/svg/common/RangeSVG'
+import { Box, Button, Text } from '@chakra-ui/react'
+import { ListCategories, TriviaRank } from 'src/feature/featuredTrivia'
 import { shuffledTrivia } from 'src/mocks/trivias.mock'
-import { Trivia, UserLevel } from 'src/types'
+import { Trivia } from 'src/types'
 
 export const FeaturedTriviaPage = (): JSX.Element => {
   return (
@@ -15,32 +15,10 @@ export const FeaturedTriviaPage = (): JSX.Element => {
 
 const TriviaCard = ({ trivia }: { trivia: Trivia }): JSX.Element => {
   return (
-    <Box
-      key={trivia.id}
-      sx={{
-        minWidth: '50%',
-        padding: '24px',
-        display: 'flex',
-        justifyContent: 'space-between',
-        gap: '96px',
-        borderWidth: 1,
-      }}
-    >
+    <CardWrapper>
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
         <Text>{trivia.title}</Text>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          {trivia.categories.map(category => {
-            return (
-              <Badge
-                key={category.id}
-                background={category.bg_color}
-                textColor={category.text_color}
-              >
-                {category.label}
-              </Badge>
-            )
-          })}
-        </Box>
+        <ListCategories categories={trivia.categories} />
         <Text sx={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           {`Creada por: `}
           {/* Reemplazar por imagen del usuario */}
@@ -56,9 +34,9 @@ const TriviaCard = ({ trivia }: { trivia: Trivia }): JSX.Element => {
       </Box>
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
         <Button>{`Jugar`}</Button>
-        <RangeWrapper levels={trivia.levels} />
+        <TriviaRank levels={trivia.levels} />
       </Box>
-    </Box>
+    </CardWrapper>
   )
 }
 
@@ -79,28 +57,19 @@ const MainContainer = ({ children }: { children: JSX.Element[] }): JSX.Element =
   )
 }
 
-type LevelDisable = {
-  [level in UserLevel]: boolean
-}
-
-const RangeWrapper = ({ levels }: { levels: UserLevel[] }): JSX.Element => {
-  const isLevelDisabled: LevelDisable = {
-    [UserLevel.BASIC]: !levels.find(level => level === UserLevel.BASIC),
-    [UserLevel.INTERMEDIATE]: !levels.find(level => level === UserLevel.INTERMEDIATE),
-    [UserLevel.ADVANCED]: !levels.find(level => level === UserLevel.ADVANCED),
-  }
-
+const CardWrapper = ({ children }: { children: JSX.Element[] }): JSX.Element => {
   return (
     <Box
       sx={{
+        minWidth: '50%',
+        padding: '24px',
         display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'flex-end',
+        justifyContent: 'space-between',
+        gap: '96px',
+        borderWidth: 1,
       }}
     >
-      <BasicSVG isDisabled={isLevelDisabled.BASIC} />
-      <IntermediateSVG isDisabled={isLevelDisabled.INTERMEDIATE} />
-      <AdvancedSVG isDisabled={isLevelDisabled.ADVANCED} />
+      {children}
     </Box>
   )
 }
