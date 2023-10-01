@@ -10,7 +10,16 @@ export const ListCategories = ({ categories }: IListCategories): JSX.Element => 
     <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
       {categories.map(category => {
         return (
-          <Badge key={category.id} background={category.bg_color} textColor={category.text_color}>
+          <Badge
+            key={category.id}
+            background={category.bg_color}
+            textColor={category.text_color}
+            sx={{
+              padding: '4px 16px',
+              fontSize: '14px',
+              textTransform: 'none',
+            }}
+          >
             {category.label}
           </Badge>
         )

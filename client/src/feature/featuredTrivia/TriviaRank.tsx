@@ -21,7 +21,7 @@ export const TriviaRank = ({ levels }: ITriviaRank): JSX.Element => {
     <Box
       sx={{
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
         alignItems: 'flex-end',
       }}
     >

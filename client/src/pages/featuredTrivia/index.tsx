@@ -17,7 +17,7 @@ const TriviaCard = ({ trivia }: { trivia: Trivia }): JSX.Element => {
   return (
     <CardWrapper>
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-        <Text>{trivia.title}</Text>
+        <Text sx={{ fontSize: '20px' }}>{trivia.title}</Text>
         <ListCategories categories={trivia.categories} />
         <Text sx={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           {`Creada por: `}
@@ -33,7 +33,10 @@ const TriviaCard = ({ trivia }: { trivia: Trivia }): JSX.Element => {
         </Text>
       </Box>
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-        <Button>{`Jugar`}</Button>
+        <Button sx={{ paddingX: '24px', fontSize: '18px' }}>{`¡Jugar!`}</Button>
+        <Text
+          sx={{ fontSize: '18px', textAlign: 'right', fontWeight: '500' }}
+        >{`${trivia.questions.length} preguntas`}</Text>
         <TriviaRank levels={trivia.levels} />
       </Box>
     </CardWrapper>
@@ -44,7 +47,8 @@ const MainContainer = ({ children }: { children: JSX.Element[] }): JSX.Element =
   return (
     <Box
       sx={{
-        padding: '24px',
+        paddingY: '24px',
+        paddingX: '20%',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -61,7 +65,7 @@ const CardWrapper = ({ children }: { children: JSX.Element[] }): JSX.Element => 
   return (
     <Box
       sx={{
-        minWidth: '50%',
+        width: '100%',
         padding: '24px',
         display: 'flex',
         justifyContent: 'space-between',
