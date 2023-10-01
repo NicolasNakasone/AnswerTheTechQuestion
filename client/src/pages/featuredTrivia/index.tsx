@@ -17,9 +17,17 @@ const TriviaCard = ({ trivia }: { trivia: Trivia }): JSX.Element => {
   return (
     <CardWrapper>
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-        <Text sx={{ fontSize: '20px' }}>{trivia.title}</Text>
+        <Text sx={{ fontSize: '24px', fontWeight: '600' }}>{trivia.title}</Text>
         <ListCategories categories={trivia.categories} />
-        <Text sx={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <Text
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            fontSize: '18px',
+            fontWeight: '500',
+          }}
+        >
           {`Creada por: `}
           {/* Reemplazar por imagen del usuario */}
           <span
