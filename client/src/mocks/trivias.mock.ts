@@ -57,7 +57,7 @@ const mockTrivia: Trivia[] = [
     categories: [mockCategory.REACT],
     levels: [UserLevel.BASIC],
     questions: mockQuestionList,
-    average_score: 4.75,
+    average_score: 4.4,
     total_votes: 2000,
   },
   {

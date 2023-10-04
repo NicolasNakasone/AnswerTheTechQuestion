@@ -7,7 +7,7 @@ interface IListCategories {
 
 export const ListCategories = ({ categories }: IListCategories): JSX.Element => {
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+    <Box sx={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
       {categories.map(category => {
         return (
           <Badge
@@ -16,7 +16,7 @@ export const ListCategories = ({ categories }: IListCategories): JSX.Element => 
             textColor={category.text_color}
             sx={{
               padding: '4px 16px',
-              fontSize: '14px',
+              fontSize: '12px',
               textTransform: 'none',
             }}
           >
