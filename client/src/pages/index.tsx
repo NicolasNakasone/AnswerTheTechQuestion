@@ -1,4 +1,5 @@
-import { Home } from 'src/pages/home'
-import { Trivia } from 'src/pages/trivia'
+import { FeaturedTriviaPage } from 'src/pages/featuredTrivia'
+import { HomePage } from 'src/pages/home'
+import { TriviaPage } from 'src/pages/trivia'
 
-export { Home, Trivia }
+export { FeaturedTriviaPage, HomePage, TriviaPage }

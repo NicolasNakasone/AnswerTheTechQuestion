@@ -5,22 +5,17 @@ import styled from '@emotion/styled'
 import { GameContext } from 'src/context/GameContext'
 import { QuestionCard } from 'src/feature/trivia/QuestionCard'
 import { TriviaResult } from 'src/feature/trivia/TriviaResult'
-import { shuffledTrivia } from 'src/mocks/trivias.mock'
 
-export const Trivia = () => {
-  const { questionIndex } = useContext(GameContext)
+export const TriviaPage = () => {
+  const { currentTrivia, questionIndex } = useContext(GameContext)
+
+  if (!currentTrivia) {
+    return <div />
+  }
 
   return (
     <MainWrapper>
-      {questionIndex !== shuffledTrivia.length ? (
-        <QuestionCard
-          {...{
-            currentTrivia: shuffledTrivia,
-          }}
-        />
-      ) : (
-        <TriviaResult {...{ currentTrivia: shuffledTrivia }} />
-      )}
+      {questionIndex !== currentTrivia.questions.length ? <QuestionCard /> : <TriviaResult />}
     </MainWrapper>
   )
 }
