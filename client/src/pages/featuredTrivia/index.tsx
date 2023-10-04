@@ -1,5 +1,5 @@
 import { Box, Button, Text } from '@chakra-ui/react'
-import { ListCategories, TriviaRank } from 'src/feature/featuredTrivia'
+import { ListCategories, TriviaRank, TriviaRating } from 'src/feature/featuredTrivia'
 import { shuffledTrivia } from 'src/mocks/trivias.mock'
 import { Trivia } from 'src/types'
 
@@ -42,6 +42,7 @@ const TriviaCard = ({ trivia }: { trivia: Trivia }): JSX.Element => {
       </Box>
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
         <Button sx={{ paddingX: '24px', fontSize: '18px' }}>{`¡Jugar!`}</Button>
+        <TriviaRating score={trivia.average_score} />
         <Text
           sx={{ fontSize: '18px', textAlign: 'right', fontWeight: '500' }}
         >{`${trivia.questions.length} preguntas`}</Text>
