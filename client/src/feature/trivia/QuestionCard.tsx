@@ -4,6 +4,7 @@ import { Box, Progress, Text } from '@chakra-ui/react'
 import { GameContext } from 'src/context/GameContext'
 import { AnswerList } from 'src/feature/trivia/AnswerList'
 import { NextQuestionButton } from 'src/feature/trivia/NextQuestionButton'
+import { useThemeColors } from 'src/util'
 
 const TIMER_DEFAULT_VALUE = 5
 
@@ -51,7 +52,7 @@ export const QuestionCard = (): JSX.Element => {
         min={0}
         max={currentTrivia?.questions.length}
         value={questionIndex}
-        sx={{ '& > div': { backgroundColor: 'green.300' } }}
+        sx={{ '& > div': { backgroundColor: useThemeColors('primaryLight') } }}
       />
     </>
   )
