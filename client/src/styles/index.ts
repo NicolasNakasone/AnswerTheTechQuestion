@@ -36,6 +36,10 @@ export const theme = extendTheme({
         color: mode(colors.textDark, colors.textLight)(props),
         bg: mode(colors.backgroundLight, colors.backgroundDark)(props),
       },
+      button: {
+        color: mode(colors.textDark, colors.textLight),
+        bg: mode(colors.backgroundLight, colors.backgroundDark),
+      },
     }),
   },
 })
