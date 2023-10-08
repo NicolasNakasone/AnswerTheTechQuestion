@@ -64,7 +64,7 @@ const MainContainer = ({ children }: { children: JSX.Element[] }): JSX.Element =
   return (
     <Box
       sx={{
-        paddingY: '24px',
+        paddingY: '48px',
         paddingX: '20%',
         display: 'flex',
         flexDirection: 'column',

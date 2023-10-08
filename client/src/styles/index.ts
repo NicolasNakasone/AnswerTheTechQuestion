@@ -18,7 +18,7 @@ const colors = {
   primaryLight: '#EBB9DF',
   primaryDark: '#4D3B56',
   textLight: '#F8F4E3',
-  textDark: '#330C2F',
+  textDark: '#1A202C',
   backgroundLight: '#F6F3F6',
   backgroundDark: '#2D232F',
   disabled: '#EDE8EE',
