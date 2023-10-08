@@ -24,7 +24,7 @@ export const TriviaResult = (): JSX.Element => {
           )
         })}
       </List>
-      <Button onClick={() => navigate(routes.home)}>Volver a la lista de trivias</Button>
+      <Button onClick={() => navigate(routes.featuredTrivia)}>Volver a la lista de trivias</Button>
     </Box>
   )
 }

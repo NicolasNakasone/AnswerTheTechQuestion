@@ -1,4 +1,6 @@
 import { Box, Button, Text } from '@chakra-ui/react'
+import { useNavigate } from 'react-router-dom'
+import { routes } from 'src/constants/routes'
 import { ListCategories, TriviaRank, TriviaRating } from 'src/feature/featuredTrivia'
 import { shuffledTrivia } from 'src/mocks/trivias.mock'
 import { Trivia } from 'src/types'
@@ -14,6 +16,8 @@ export const FeaturedTriviaPage = (): JSX.Element => {
 }
 
 const TriviaCard = ({ trivia }: { trivia: Trivia }): JSX.Element => {
+  const navigate = useNavigate()
+
   return (
     <CardWrapper>
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
@@ -41,7 +45,11 @@ const TriviaCard = ({ trivia }: { trivia: Trivia }): JSX.Element => {
         </Text>
       </Box>
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-        <Button sx={{ paddingX: '24px', fontSize: '18px' }}>{`¡Jugar!`}</Button>
+        <Button
+          sx={{ paddingX: '24px', fontSize: '18px' }}
+          // Reemplazar al detalle de la trivia
+          onClick={() => navigate(routes.trivia)}
+        >{`¡Jugar!`}</Button>
         <TriviaRating score={trivia.average_score} />
         <Text
           sx={{ fontSize: '18px', textAlign: 'right', fontWeight: '500' }}
@@ -56,7 +64,7 @@ const MainContainer = ({ children }: { children: JSX.Element[] }): JSX.Element =
   return (
     <Box
       sx={{
-        paddingY: '24px',
+        paddingY: '48px',
         paddingX: '20%',
         display: 'flex',
         flexDirection: 'column',
