@@ -23,11 +23,10 @@ server.use((req: Request, res: Response, next: NextFunction) => {
 
 // server.use('/', routes)
 
-// Error catching endware.
 server.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   // @ts-expect-error Type Error does not include status
   const status = err.status || 500
-  const message = err.message || err
+  const message = err.message /* || err */ || 'Internal Server Error'
   console.error(err)
   res.status(status).send(message)
   next()
