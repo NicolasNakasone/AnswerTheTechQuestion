@@ -1,51 +1,14 @@
 {
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["import", "prettier"],
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier"],
   "env": {
+    "es6": true,
     "browser": true,
-    "commonjs": true,
-    "es2021": true
-  },
-  "extends": ["airbnb-base"],
-  "parserOptions": {
-    "ecmaVersion": 12
+    "jest": true,
+    "node": true
   },
   "rules": {
-    "indent": ["error", 2],
-    "quotes": ["error", "double"],
-    "no-unused-vars": ["warn", { "vars": "all" }],
-    "import/extensions": ["off"],
-    "prefer-const": [
-      "warn",
-      {
-        "destructuring": "any",
-        "ignoreReadBeforeAssign": false
-      }
-    ],
-    "no-underscore-dangle": 0,
-    "no-param-reassign": 0,
-    "import/no-unresolved": 0,
-    "linebreak-style": "off",
-    "semi": ["error", "always"],
-    "object-curly-newline": [
-      "error",
-      { "ImportDeclaration": "never", "ExportDeclaration": "never" }
-    ],
-    "comma-dangle": [
-      "error",
-      {
-        "arrays": "ignore",
-        "objects": "ignore",
-        "imports": "ignore",
-        "exports": "ignore",
-        "functions": "ignore"
-      }
-    ],
-    "max-len": [
-      "error",
-      {
-        "code": 150,
-        "comments": 150
-      }
-    ],
     "@typescript-eslint/no-explicit-any": 1,
     "@typescript-eslint/no-var-requires": 0,
     "@typescript-eslint/no-unused-vars": [
@@ -85,17 +48,9 @@
         }
       }
     ],
-    "no-restricted-syntax": [
-      "error",
-      {
-        "selector": "ExportDefaultDeclaration",
-        "message": "Exporting a default export is not supported. Use named export instead."
-      }
-    ],
     "no-await-in-loop": 1,
     "no-duplicate-imports": 2,
     "prettier/prettier": "error"
-    // "implicit-arrow-linebreak": ["error"]
-    // "import/newline-after-import": ["error", { "count": 0 }]
-  }
+  },
+  "ignorePatterns": ["**/*.js", "**/*.config.ts", "**/*.json", "node_modules", "coverage", "dist"]
 }
